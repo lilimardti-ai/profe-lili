@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storybook C&T - I.E. 0148 Maestro Víctor Raúl Haya de la Torre</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        peruRed: '#C8102E',
+                        incaGold: '#D4AF37',
+                        selvaGreen: '#006B3C',
+                        andeanSky: '#1E3A8A',
+                        customDark: '#0F172A',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Estilos de resaltadores pedagógicos */
+        .hl-yellow { background-color: rgba(250, 204, 21, 0.45); border-bottom: 2px solid #eab308; border-radius: 2px; padding: 0 2px; }
+        .hl-green { background-color: rgba(74, 222, 128, 0.45); border-bottom: 2px solid #22c55e; border-radius: 2px; padding: 0 2px; }
+        .hl-blue { background-color: rgba(96, 165, 250, 0.45); border-bottom: 2px solid #3b82f6; border-radius: 2px; padding: 0 2px; }
+
+        /* Palabra de Glosario clickable */
+        .glossary-term {
+            color: #C8102E;
+            font-weight: 700;
+            text-decoration: underline dotted #D4AF37 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .dark .glossary-term {
+            color: #f87171;
+        }
+        .glossary-term:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+            border-radius: 4px;
+        }
+
+        /* Animación suave para modales */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Impresión para diploma */
+        @media print {
+            body * { visibility: hidden; }
+            #certificateModal, #certificateModal * { visibility: visible; }
+            #certificateModal { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: white; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-customDark dark:text-slate-100 min-h-screen flex flex-col transition-all duration-300">
+
+    <!-- BARRA SUPERIOR DE CONTROL / APRENDIZAJE Y NAVEGACIÓN -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+            
+            <!-- Marca Institutional con Escudo SVG -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-14 flex-shrink-0 cursor-pointer" onclick="showInstitutionalInfo()">
+                    <!-- SVG Escudo I.E. 0148 MVRHT -->
+                    <svg viewBox="0 0 200 240" class="w-full h-full drop-shadow-md">
+                        <!-- Fondo Escudo Peruano (Rojo y Blanco) -->
+                        <path d="M 20,20 L 180,20 Q 180,140 100,220 Q 20,140 20,20 Z" fill="#C8102E" stroke="#D4AF37" stroke-width="5"/>
+                        <path d="M 65,20 L 135,20 Q 135,135 100,205 Q 65,135 65,20 Z" fill="#FFFFFF"/>
+                        <!-- Ramas de Laurel -->
+                        <path d="M 15,40 Q 5,100 25,160 M 185,40 Q 195,100 175,160" stroke="#006B3C" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        <!-- Mapa de Perú Esquemático con # 148 -->
+                        <path d="M 85,70 L 115,75 L 125,95 L 110,125 L 95,140 L 80,120 L 75,90 Z" fill="#D4AF37" opacity="0.85"/>
+                        <text x="100" y="112" font-size="22" font-weight="bold" fill="#006B3C" text-anchor="middle" font-family="sans-serif">148</text>
+                        <!-- Cinta y Texto Superior -->
+                        <rect x="30" y="28" width="140" height="24" rx="4" fill="#006B3C"/>
+                        <text x="100" y="44" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">I.E. MVRHT</text>
+                        <!-- Siglas y Detalles -->
+                        <text x="100" y="165" font-size="11" font-weight="bold" fill="#C8102E" text-anchor="middle">S.J.L. - 2026</text>
+                        <text x="100" y="182" font-size="9" font-weight="bold" fill="#1E3A8A" text-anchor="middle">SECUNDARIA</text>
+                        <text x="100" y="196" font-size="7" font-weight="semibold" fill="#333333" text-anchor="middle">AIP CNEB</text>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-bold text-peruRed dark:text-red-400 leading-tight">I.E. N° 0148 "Maestro V.R.H.T."</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Ciencia y Tecnología | San Juan de Lurigancho (2026)</p>
+                </div>
+            </div>
+
+            <!-- Panel de Gamificación (Estrellas y Progreso) -->
+            <div class="flex items-center gap-4 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center gap-1.5" title="Estrellas acumuladas">
+                    <i class="fa-solid fa-star text-incaGold text-lg animate-pulse"></i>
+                    <span id="starCounter" class="font-extrabold text-slate-800 dark:text-amber-400 text-base">0</span>
+                </div>
+                <div class="w-24 sm:w-32 bg-slate-300 dark:bg-slate-700 h-3 rounded-full overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-peruRed via-incaGold to-selvaGreen h-full w-0 transition-all duration-500"></div>
+                </div>
+                <span id="progressPercent" class="text-xs font-bold text-slate-600 dark:text-slate-300">0%</span>
+            </div>
+
+            <!-- Controles Accesibilidad: Resaltadores, Fuente y Tema -->
+            <div class="flex items-center gap-2">
+                <!-- Selectores de Plumón Resaltador -->
+                <div class="flex items-center bg-slate-200 dark:bg-slate-800 p-1 rounded-lg gap-1" title="Plumón Resaltador Pedagógico">
+                    <button onclick="setHighlighter('yellow')" id="btnHL-yellow" class="w-7 h-7 rounded-md bg-yellow-300 border-2 border-transparent hover:scale-105 transition-transform flex items-center justify-center text-xs text-slate-900 font-bold" title="Idea Principal (Amarillo)"><i class="fa-solid fa-highlighter"></i></button>
+                    <button onclick="setHighlighter('green')" id="btnHL-green" class="w-7 h-7 rounded-md bg-green-400 border-2 border-transparent hover:scale-105 transition-transform flex items-center justify-center text-xs text-slate-900 font-bold" title="Vocabulario (Verde)"><i class="fa-solid fa-highlighter"></i></button>
+                    <button onclick="setHighlighter('blue')" id="btnHL-blue" class="w-7 h-7 rounded-md bg-blue-400 border-2 border-transparent hover:scale-105 transition-transform flex items-center justify-center text-xs text-slate-900 font-bold" title="Duda / Pregunta (Azul)"><i class="fa-solid fa-highlighter"></i></button>
+                    <button onclick="clearSelectionHighlight()" class="w-7 h-7 rounded-md bg-slate-300 dark:bg-slate-700 hover:bg-red-200 text-slate-700 dark:text-slate-200 text-xs flex items-center justify-center" title="Quitar resaltado"><i class="fa-solid fa-eraser"></i></button>
+                </div>
+
+                <!-- Tamaño de fuente -->
+                <div class="flex items-center bg-slate-200 dark:bg-slate-800 p-1 rounded-lg">
+                    <button onclick="changeFontSize(-1)" class="w-7 h-7 rounded hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm" title="Disminuir letra">-</button>
+                    <span class="text-xs px-1 text-slate-500 font-semibold"><i class="fa-solid fa-font"></i></span>
+                    <button onclick="changeFontSize(1)" class="w-7 h-7 rounded hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm" title="Aumentar letra">+</button>
+                </div>
+
+                <!-- Botón Modo Oscuro/Claro -->
+                <button onclick="toggleDarkMode()" class="p-2 bg-slate-200 dark:bg-slate-800 rounded-lg text-slate-700 dark:text-amber-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition" title="Cambiar Tema">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PESTAÑAS DE CAPÍTULOS -->
+    <nav class="bg-peruRed text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between overflow-x-auto scrollbar-none">
+            <button onclick="switchChapter(1)" id="tab-cap1" class="px-5 py-3 font-semibold text-sm border-b-4 border-incaGold bg-white/10 flex items-center gap-2 whitespace-nowrap transition">
+                <span class="w-6 h-6 rounded-full bg-incaGold text-peruRed font-extrabold flex items-center justify-center text-xs">1</span>
+                Cap. 1: Fuerzas y Desastres
+            </button>
+            <button onclick="switchChapter(2)" id="tab-cap2" class="px-5 py-3 font-semibold text-sm border-b-4 border-transparent hover:bg-white/5 flex items-center gap-2 whitespace-nowrap transition">
+                <span class="w-6 h-6 rounded-full bg-white/20 text-white font-extrabold flex items-center justify-center text-xs">2</span>
+                Cap. 2: Trabajo, Potencia y Energía
+            </button>
+            <button onclick="switchChapter(3)" id="tab-cap3" class="px-5 py-3 font-semibold text-sm border-b-4 border-transparent hover:bg-white/5 flex items-center gap-2 whitespace-nowrap transition">
+                <span class="w-6 h-6 rounded-full bg-white/20 text-white font-extrabold flex items-center justify-center text-xs">3</span>
+                Cap. 3: Ingeniería Antisísmica
+            </button>
+            <button onclick="switchChapter(4)" id="tab-cap4" class="px-5 py-3 font-semibold text-sm border-b-4 border-transparent hover:bg-white/5 flex items-center gap-2 whitespace-nowrap transition">
+                <span class="w-6 h-6 rounded-full bg-incaGold text-slate-900 font-extrabold flex items-center justify-center text-xs"><i class="fa-solid fa-graduation-cap text-[10px]"></i></span>
+                Evaluación Final CNEB
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONTENIDOR PRINCIPAL LECTURA Y ACTIVIDADES -->
+    <main id="contentContainer" class="max-w-5xl mx-auto px-4 py-8 flex-1 w-full text-base transition-all">
+
+        <!-- ==================== CAPÍTULO 1 ==================== -->
+        <section id="chapter1" class="space-y-8 animate-fade-in">
+            <!-- Encabezado del Capítulo -->
+            <div class="bg-gradient-to-r from-red-900 to-peruRed text-white p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-10 translate-x-6 -translate-y-6">
+                    <i class="fa-solid fa-volcano text-9xl"></i>
+                </div>
+                <span class="bg-incaGold text-slate-900 text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider">Unidad 1 - Física de los Fenómenos Naturales</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Fuerzas Tectónicas y el Impacto de El Niño en Lima Este</h2>
+                <p class="text-red-100 text-sm mt-1">Reflexionando sobre la seguridad en San Juan de Lurigancho y la I.E. N° 0148</p>
+            </div>
+
+            <!-- Leyenda Plumones Resaltadores -->
+            <div class="flex flex-wrap items-center gap-3 bg-amber-50 dark:bg-slate-800/80 p-3 rounded-xl border border-amber-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300">
+                <span class="font-bold flex items-center gap-1"><i class="fa-solid fa-circle-info text-incaGold"></i> Herramienta de Lectura Activa:</span>
+                <span class="flex items-center gap-1"><span class="w-3 h-3 bg-yellow-300 rounded"></span> Idea Principal</span>
+                <span class="flex items-center gap-1"><span class="w-3 h-3 bg-green-400 rounded"></span> Vocabulario Nuevo</span>
+                <span class="flex items-center gap-1"><span class="w-3 h-3 bg-blue-400 rounded"></span> Duda / Pregunta</span>
+                <span class="ml-auto text-slate-500 font-medium italic">Selecciona cualquier texto para resaltarlo</span>
+            </div>
+
+            <!-- Contenido Narrativo Cap 1 -->
+            <div class="selectable-area space-y-4 leading-relaxed text-justify bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+                <p>
+                    La historia sísmica y meteorológica del Perú nos demuestra que habitamos un territorio dinámico. En la comuna de <strong>San Juan de Lurigancho (S.J.L.)</strong>, la comunidad educativa de la <strong>I.E. N° 0148 "Maestro Víctor Raúl Haya de la Torre"</strong> convive con la constante amenaza de eventos telúricos severos generados por la interacción tectónica y fenómenos climatológicos extremos como el fenómeno de <span class="glossary-term" onclick="openGlossary('el_nino')">El Niño</span>.
+                </p>
+                <p>
+                    Cuando se libera energía en el <span class="glossary-term" onclick="openGlossary('epicentro')">epicentro</span> de un movimiento telúrico, la litosfera experimenta la propagación de ondas elásticas. La Física nos explica cómo la primera ley de Newton o ley de la <span class="glossary-term" onclick="openGlossary('inercia')">inercia</span> actúa sobre la infraestructura de nuestras viviendas e institución educativa: las estructuras tienden a mantener su estado de reposo hasta que las fuerzas sísmicas cambian drásticamente su aceleración.
+                </p>
+
+                <!-- Infografía Interactiva Placas Tectónicas -->
+                <div class="my-6 bg-slate-100 dark:bg-slate-900 p-4 rounded-xl border border-slate-300 dark:border-slate-700">
+                    <h4 class="font-bold text-center text-peruRed dark:text-red-400 mb-3 text-sm uppercase">Simulación Térmica y Placas Tectónicas (Subducción Nazca - Sudamérica)</h4>
+                    <div class="flex flex-col md:flex-row items-center justify-around gap-4">
+                        <div class="w-full md:w-1/2 h-44 bg-blue-900/20 dark:bg-slate-950 rounded-lg relative overflow-hidden flex items-center justify-center border border-slate-400 dark:border-slate-600">
+                            <!-- Canvas interactivo de sismo -->
+                            <canvas id="seismicCanvas" class="w-full h-full"></canvas>
+                        </div>
+                        <div class="w-full md:w-1/2 space-y-2 text-xs">
+                            <label class="font-semibold block">Intensidad del Sismo (Escala Richter): <span id="richterVal" class="text-peruRed font-bold">5.5</span></label>
+                            <input type="range" id="richterSlider" min="3.0" max="8.5" step="0.1" value="5.5" class="w-full accent-peruRed" oninput="updateSeismicSimulation(this.value)">
+                            <p class="text-slate-600 dark:text-slate-400 text-xs">
+                                Observa cómo la deformación elástica del terreno transmite fuerzas horizontales. A mayor magnitud, la aceleración del suelo sobrepasa la resistencia estructural de edificaciones no sismorresistentes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    Por otro lado, las lluvias intensas del fenómeno de El Niño provocan deslizamientos y huaycos en laderas inestables. Antiguamente, las culturas preincas veneraban a la <span class="glossary-term" onclick="openGlossary('pachamama')">Pachamama</span> y respetaban a los sagrados <span class="glossary-term" onclick="openGlossary('apu')">Apu</span>, construyendo andenes y observando el ecosistema con tecnologías ancestrales de prevención. Hoy la física moderna se complementa con este saber originario para resguardar la vida humana.
+                </p>
+            </div>
+
+            <!-- ACTIVIDAD EVALUATIVA CAPÍTULO 1 -->
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-slate-800 dark:to-slate-800/90 p-6 rounded-2xl border-2 border-incaGold/40 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-lg text-slate-800 dark:text-amber-400 flex items-center gap-2">
+                        <i class="fa-solid fa-gamepad text-incaGold"></i> Desafío 1: Comprensión Física y Tectónica
+                    </h3>
+                    <span class="text-xs bg-incaGold/20 text-yellow-800 dark:text-yellow-300 font-bold px-3 py-1 rounded-full">+20 Estrellas</span>
+                </div>
+
+                <!-- Pregunta 1.1 -->
+                <div class="space-y-2 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <p class="font-semibold text-sm">1. ¿Qué principio físico explica por qué los edificios tienden a permanecer quietos o a colapsar cuando el suelo se desplaza abruptamente durante un sismo?</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <button onclick="checkAnswer(this, false, 'c1_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">A) Conservación del Principio de Pascal</button>
+                        <button onclick="checkAnswer(this, true, 'c1_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">B) Primera Ley de Newton (Inercia)</button>
+                        <button onclick="checkAnswer(this, false, 'c1_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">C) Rozamiento cinético del manto terrestre</button>
+                        <button onclick="checkAnswer(this, false, 'c1_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">D) Fuerza centrífuga marina de El Niño</button>
+                    </div>
+                </div>
+
+                <!-- Pregunta 1.2 Ordenamiento -->
+                <div class="space-y-2 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <p class="font-semibold text-sm">2. Ordena la secuencia de transmisión de ondas sísmicas desde su origen:</p>
+                    <p class="text-xs text-slate-500">Arrastra o selecciona los pasos en el orden correcto (1 al 3):</p>
+                    <div id="sortableList" class="space-y-2">
+                        <div data-id="2" class="sort-item p-2 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-600 text-xs flex justify-between items-center cursor-pointer" onclick="moveSortItem(this)">
+                            <span>Propagación de ondas telúricas a través de la litosfera</span>
+                            <i class="fa-solid fa-bars text-slate-400"></i>
+                        </div>
+                        <div data-id="1" class="sort-item p-2 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-600 text-xs flex justify-between items-center cursor-pointer" onclick="moveSortItem(this)">
+                            <span>Ruptura de la falla y liberación de energía en el hipocentro</span>
+                            <i class="fa-solid fa-bars text-slate-400"></i>
+                        </div>
+                        <div data-id="3" class="sort-item p-2 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-600 text-xs flex justify-between items-center cursor-pointer" onclick="moveSortItem(this)">
+                            <span>Vibración del suelo y sacudida de las estructuras en superficie</span>
+                            <i class="fa-solid fa-bars text-slate-400"></i>
+                        </div>
+                    </div>
+                    <button onclick="verifyOrder()" class="mt-2 text-xs bg-selvaGreen text-white font-bold px-4 py-2 rounded-lg hover:bg-emerald-700 transition">Verificar Orden de Secuencia</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CAPÍTULO 2 ==================== -->
+        <section id="chapter2" class="hidden space-y-8 animate-fade-in">
+            <!-- Encabezado del Capítulo -->
+            <div class="bg-gradient-to-r from-selvaGreen to-emerald-800 text-white p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-10 translate-x-6 -translate-y-6">
+                    <i class="fa-solid fa-bolt text-9xl"></i>
+                </div>
+                <span class="bg-incaGold text-slate-900 text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider">Unidad 2 - Trabajo Mecánico, Potencia y Energía</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">La Física en Acción: Laboratorio de Energías</h2>
+                <p class="text-emerald-100 text-sm mt-1">Transformación de energía cinética y potencial en ondas sísmicas e hidrodinámicas</p>
+            </div>
+
+            <!-- Contenido Narrativo Cap 2 -->
+            <div class="selectable-area space-y-4 leading-relaxed text-justify bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+                <p>
+                    Para comprender cómo se miden y mitigan los daños de una catástrofe natural, los estudiantes de la <strong>I.E. N° 0148</strong> estudian los conceptos fundamentales de Trabajo Mecánico (\(W = F \cdot d\)), Potencia Mecánica (\(P = W / t\)) y las manifestaciones de la energía.
+                </p>
+                <p>
+                    La <span class="glossary-term" onclick="openGlossary('energia_potencial')">energía potencial gravitatoria</span> (\(E_p = m \cdot g \cdot h\)) se acumula en las masas de agua retenidas en las alturas de las cuencas o en las placas tectónicas comprimidas. Al liberarse en una pendiente durante un deslizamiento, esta se transforma rápidamente en <span class="glossary-term" onclick="openGlossary('energia_cinetica')">energía cinética</span> (\(E_c = \frac{1}{2} m v^2\)), adquiriendo una gran capacidad de destrucción y realizando un <span class="glossary-term" onclick="openGlossary('trabajo_mecanico')">trabajo mecánico</span> destructivo sobre las edificaciones vulnerables.
+                </p>
+
+                <!-- SIMULADOR Y LABORATORIO DE ENERGÍA Y TRABAJO -->
+                <div class="my-6 bg-slate-950 text-white p-6 rounded-2xl shadow-2xl border border-incaGold/50 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <h4 class="font-extrabold text-incaGold flex items-center gap-2">
+                            <i class="fa-solid fa-flask"></i> Laboratorio Interactivo: Cálculo de Energetica Sísmica y Masa
+                        </h4>
+                        <span class="text-xs bg-white/10 text-slate-300 px-2 py-1 rounded">Simulador CNEB P=W/t</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <!-- Control Masa -->
+                        <div class="space-y-1">
+                            <label class="font-semibold text-slate-300">Masa de Estructura / Roca (\(m\)): <span id="massVal" class="text-amber-400 font-bold">500 kg</span></label>
+                            <input type="range" id="massInput" min="100" max="2000" step="50" value="500" class="w-full accent-incaGold" oninput="runPhysicsLab()">
+                        </div>
+                        <!-- Control Altura -->
+                        <div class="space-y-1">
+                            <label class="font-semibold text-slate-300">Altura de Desplazamiento (\(h\)): <span id="heightVal" class="text-amber-400 font-bold">10 m</span></label>
+                            <input type="range" id="heightInput" min="2" max="50" step="1" value="10" class="w-full accent-incaGold" oninput="runPhysicsLab()">
+                        </div>
+                        <!-- Control Tiempo -->
+                        <div class="space-y-1">
+                            <label class="font-semibold text-slate-300">Tiempo de Caída/Impacto (\(t\)): <span id="timeVal" class="text-amber-400 font-bold">2.0 s</span></label>
+                            <input type="range" id="timeInput" min="0.5" max="10" step="0.5" value="2.0" class="w-full accent-incaGold" oninput="runPhysicsLab()">
+                        </div>
+                    </div>
+
+                    <!-- Panel de Resultados del Simulador -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-slate-800 text-center">
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 text-xs block">Energía Potencial (\(E_p\))</span>
+                            <span id="resEp" class="text-lg font-black text-amber-400">49,000 J</span>
+                        </div>
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 text-xs block">Trabajo Mecánico (\(W\))</span>
+                            <span id="resW" class="text-lg font-black text-emerald-400">49,000 J</span>
+                        </div>
+                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                            <span class="text-slate-400 text-xs block">Potencia Mecánica (\(P\))</span>
+                            <span id="resP" class="text-lg font-black text-red-400">24,500 W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    A través de estas experiencias en el <strong>Aula de Innovación Pedagógica (AIP)</strong>, comprendemos que el estudio cuantitativo de la energía nos permite prever la fuerza de impacto de los huaycos y diseñar muros de contención sismorresistentes en los cerros de San Juan de Lurigancho.
+                </p>
+            </div>
+
+            <!-- ACTIVIDAD EVALUATIVA CAPÍTULO 2 -->
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-slate-800 dark:to-slate-800/90 p-6 rounded-2xl border-2 border-selvaGreen/40 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-lg text-slate-800 dark:text-emerald-400 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-selvaGreen"></i> Desafío 2: Práctica de Energía y Potencia
+                    </h3>
+                    <span class="text-xs bg-selvaGreen text-white font-bold px-3 py-1 rounded-full">+30 Estrellas</span>
+                </div>
+
+                <!-- Pregunta 2.1 -->
+                <div class="space-y-2 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <p class="font-semibold text-sm">1. Si una masa de tierra de 1,000 kg cae desde una altura de 5 metros durante un deslizamiento, ¿cuál es su Energía Potencial Gravitatoria? (\(g = 9.8\, m/s^2\))</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <button onclick="checkAnswer(this, false, 'c2_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">A) 5,000 Joules</button>
+                        <button onclick="checkAnswer(this, true, 'c2_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">B) 49,000 Joules</button>
+                        <button onclick="checkAnswer(this, false, 'c2_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">C) 9,800 Joules</button>
+                        <button onclick="checkAnswer(this, false, 'c2_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">D) 25,000 Watts</button>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2.2 Relación de Conceptos -->
+                <div class="space-y-2 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <p class="font-semibold text-sm">2. Selecciona la unidad de medida en el Sistema Internacional (SI) correspondiente a la Potencia Mecánica:</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                        <button onclick="checkAnswer(this, false, 'c2_q2')" class="opt-btn p-3 text-center rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition font-bold">Joule (J)</button>
+                        <button onclick="checkAnswer(this, false, 'c2_q2')" class="opt-btn p-3 text-center rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition font-bold">Newton (N)</button>
+                        <button onclick="checkAnswer(this, true, 'c2_q2')" class="opt-btn p-3 text-center rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition font-bold">Watt (W)</button>
+                        <button onclick="checkAnswer(this, false, 'c2_q2')" class="opt-btn p-3 text-center rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition font-bold">Pascal (Pa)</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CAPÍTULO 3 ==================== -->
+        <section id="chapter3" class="hidden space-y-8 animate-fade-in">
+            <!-- Encabezado del Capítulo -->
+            <div class="bg-gradient-to-r from-blue-900 to-andeanSky text-white p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-10 translate-x-6 -translate-y-6">
+                    <i class="fa-solid fa-building-shield text-9xl"></i>
+                </div>
+                <span class="bg-incaGold text-slate-900 text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider">Unidad 3 - Diseño Tecnológico y Cultura de Prevención</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Maquetas Antisísmicas y Prevención Institucional</h2>
+                <p class="text-blue-100 text-sm mt-1">Soluciones de ingeniería y cultura sísmica en la I.E. N° 0148 MVRHT</p>
+            </div>
+
+            <!-- Contenido Narrativo Cap 3 -->
+            <div class="selectable-area space-y-4 leading-relaxed text-justify bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+                <p>
+                    Frente al desafío de los desastres naturales, los estudiantes del nivel secundaria aplican la indagación científica y la alternativa de solución tecnológica proponiendo edificaciones <span class="glossary-term" onclick="openGlossary('sismorresistente')">sismorresistentes</span> construidas con disipadores de energía, aisladores elastoméricos y triángulos estructurales rígidos.
+                </p>
+
+                <!-- RESPUESTA A LAS 3 PREGUNTAS DEL CURRÍCULO NACIONAL -->
+                <div class="my-6 space-y-4">
+                    <h3 class="font-bold text-slate-900 dark:text-incaGold text-base flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-question text-peruRed"></i> Interrogantes Clave de Indagación CNEB:
+                    </h3>
+
+                    <div class="bg-red-50 dark:bg-slate-900/90 p-5 rounded-xl border-l-4 border-peruRed space-y-2">
+                        <h4 class="font-extrabold text-peruRed dark:text-red-400 text-sm">1. ¿Qué acciones tecnológicas y científicas pueden ayudar a prevenir o disminuir los daños?</h4>
+                        <p class="text-xs text-slate-700 dark:text-slate-300">
+                            Diseñar edificaciones resistentes a los sismos utilizando aisladores en la base, identificar zonas seguras mediante mapa de microzonificación sísmica, utilizar sistemas de alerta temprana sismológica y conocer las medidas de prevención ante desastres naturales.
+                        </p>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-slate-900/90 p-5 rounded-xl border-l-4 border-incaGold space-y-2">
+                        <h4 class="font-extrabold text-amber-700 dark:text-incaGold text-sm">2. ¿Qué propuestas podemos elaborar para fortalecer la cultura de prevención en nuestra institución educativa?</h4>
+                        <p class="text-xs text-slate-700 dark:text-slate-300">
+                            Construir maquetas de edificios antisísmicos con materiales reciclables y accesibles para evaluar la amortiguación, elaborar señalizaciones de seguridad foto-luminiscentes y promover campañas de prevención y actividades interactivas de evacuación en el pabellón escolar.
+                        </p>
+                    </div>
+
+                    <div class="bg-emerald-50 dark:bg-slate-900/90 p-5 rounded-xl border-l-4 border-selvaGreen space-y-2">
+                        <h4 class="font-extrabold text-selvaGreen dark:text-emerald-400 text-sm">3. ¿Por qué es importante participar responsablemente en los simulacros?</h4>
+                        <p class="text-xs text-slate-700 dark:text-slate-300">
+                            Porque nos permite practicar una evacuación ordenada y rápida, reconocer los círculos de seguridad en el patio escolar, reducir los tiempos de respuesta y actuar adecuadamente con serenidad para proteger nuestra vida y la de nuestros compañeros ante una emergencia real.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SIMULADOR INTERACTIVO DE MAQUETA ANTISÍSMICA -->
+                <div class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-700 space-y-4">
+                    <h4 class="font-extrabold text-center text-incaGold text-sm uppercase tracking-wide">
+                        Simulación de Estabilidad: Prueba de Resistencia Mecánica en Maqueta
+                    </h4>
+                    <div class="flex flex-col sm:flex-row items-center justify-around gap-6">
+                        <div class="w-48 h-56 bg-slate-950 border-2 border-slate-700 rounded-xl flex items-end justify-center pb-2 relative overflow-hidden">
+                            <!-- Maqueta Edificio Dinámico -->
+                            <div id="buildingStructure" class="w-24 bg-slate-700 border-2 border-slate-500 rounded-t-lg transition-transform duration-75 flex flex-col items-center justify-around p-2 space-y-2">
+                                <div class="w-full h-4 bg-blue-400/30 rounded flex justify-around items-center"><span class="w-2 h-2 bg-yellow-300 rounded-full"></span><span class="w-2 h-2 bg-yellow-300 rounded-full"></span></div>
+                                <div id="buildingBracing" class="w-full h-4 bg-slate-600 rounded flex justify-around items-center border border-slate-500"><span class="w-2 h-2 bg-yellow-300 rounded-full"></span><span class="w-2 h-2 bg-yellow-300 rounded-full"></span></div>
+                                <div class="w-full h-4 bg-blue-400/30 rounded flex justify-around items-center"><span class="w-2 h-2 bg-yellow-300 rounded-full"></span><span class="w-2 h-2 bg-yellow-300 rounded-full"></span></div>
+                            </div>
+                            <div class="absolute bottom-0 w-full h-3 bg-peruRed"></div>
+                        </div>
+                        <div class="space-y-4 text-xs w-full sm:w-1/2">
+                            <div>
+                                <label class="font-semibold block mb-1">Refuerzo Estructural (Arriostramientos x3):</label>
+                                <button id="toggleBraceBtn" onclick="toggleStructuralBracing()" class="w-full bg-incaGold text-slate-900 font-bold py-2 rounded-lg hover:bg-yellow-500 transition">
+                                    Añadir Disipadores de Energía (Triangulación)
+                                </button>
+                            </div>
+                            <div>
+                                <label class="font-semibold block mb-1">Simular Sacudida Sísmica:</label>
+                                <button onclick="shakeBuilding()" class="w-full bg-peruRed text-white font-bold py-2 rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-house-crack"></i> Probar Estabilidad sísmica
+                                </button>
+                            </div>
+                            <p id="buildingStatus" class="text-center font-bold text-slate-300 text-xs">Edificio Sin Refuerzos: Vulnerable a resonancia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTIVIDAD EVALUATIVA CAPÍTULO 3 -->
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800/90 p-6 rounded-2xl border-2 border-andeanSky/40 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-extrabold text-lg text-slate-800 dark:text-blue-400 flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-andeanSky"></i> Desafío 3: Evaluación Integradora CNEB
+                    </h3>
+                    <span class="text-xs bg-andeanSky text-white font-bold px-3 py-1 rounded-full">+50 Estrellas</span>
+                </div>
+
+                <!-- Pregunta 3.1 -->
+                <div class="space-y-2 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <p class="font-semibold text-sm">1. ¿Cuál es el propósito principal de implementar disipadores y aisladores en la base de un edificio antisísmico?</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <button onclick="checkAnswer(this, false, 'c3_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">A) Aumentar el peso total de la estructura</button>
+                        <button onclick="checkAnswer(this, true, 'c3_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">B) Absorber y reducir la energía de movimiento transmitida por el suelo</button>
+                        <button onclick="checkAnswer(this, false, 'c3_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">C) Evitar las lluvias torrenciales del fenómeno El Niño</button>
+                        <button onclick="checkAnswer(this, false, 'c3_q1')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">D) Generar energía eléctrica a partir de las vibraciones</button>
+                    </div>
+                </div>
+
+                <!-- Pregunta 3.2 Clasificación de Acciones de Prevención -->
+                <div class="space-y-2 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <p class="font-semibold text-sm">2. Selecciona la acción CORRECTA para realizar DURANTE un sismo en el aula de clases:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <button onclick="checkAnswer(this, false, 'c3_q2')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">A) Correr apresuradamente hacia las escaleras sin mirar</button>
+                        <button onclick="checkAnswer(this, true, 'c3_q2')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">B) Mantener la calma, alejarse de ventanas y ubicarse en la zona de seguridad sísmica interna</button>
+                        <button onclick="checkAnswer(this, false, 'c3_q2')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">C) Usar el ascensor para evacuar rápidamente el edificio</button>
+                        <button onclick="checkAnswer(this, false, 'c3_q2')" class="opt-btn p-3 text-left rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">D) Permanecer cerca de repisas con objetos pesados</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTÓN DE GRADUACIÓN / DIPLOMA -->
+            <div id="diplomaSection" class="text-center p-8 bg-gradient-to-r from-incaGold via-yellow-400 to-amber-500 rounded-2xl text-slate-900 shadow-2xl space-y-4">
+                <i class="fa-solid fa-award text-6xl text-peruRed animate-bounce"></i>
+                <h3 class="text-2xl font-black">¡Felicidades por Completar los 3 Capítulos!</h3>
+                <p class="text-sm font-semibold max-w-xl mx-auto">
+                    Has demostrado competencias en indagación científica y diseño de soluciones tecnológicas. Pasa a la Evaluación Final de 10 preguntas para obtener tu nota oficial CNEB (AD, A, B, C) e imprimir tu Diploma.
+                </p>
+                <div class="flex justify-center pt-2">
+                    <button onclick="switchChapter(4)" class="bg-peruRed text-white font-black px-8 py-3.5 rounded-xl shadow-lg hover:bg-red-800 transition flex items-center gap-2 text-base">
+                        Ir a la Evaluación Final CNEB <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CAPÍTULO 4: EVALUACIÓN FINAL CNEB ==================== -->
+        <section id="chapter4" class="hidden space-y-8 animate-fade-in">
+            <!-- Encabezado del Módulo de Evaluación -->
+            <div class="bg-gradient-to-r from-peruRed via-red-900 to-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-10 translate-x-6 -translate-y-6">
+                    <i class="fa-solid fa-file-pen text-9xl"></i>
+                </div>
+                <span class="bg-incaGold text-slate-900 text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider">Módulo de Evaluación Sumativa 2026</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Evaluación Final de Ciencia y Tecnología</h2>
+                <p class="text-red-100 text-sm mt-1">Demuestra tus aprendizajes en Física, Prevención de Desastres y Diseño Tecnológico en la I.E. N° 0148</p>
+            </div>
+
+            <!-- Instrucciones de la Evaluación -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4 text-xs sm:text-sm">
+                <div class="space-y-1">
+                    <span class="font-bold text-peruRed dark:text-red-400 flex items-center gap-1.5"><i class="fa-solid fa-circle-info"></i> Indicaciones:</span>
+                    <p class="text-slate-600 dark:text-slate-300">Responde las 10 preguntas objetivas. Al finalizar, presiona el botón para obtener tu calificación automática de 0 a 20 y tu **Nivel de Logro oficial según el CNEB (AD, A, B, C)**.</p>
+                </div>
+                <div class="bg-amber-50 dark:bg-slate-900 p-3 rounded-xl border border-incaGold/40 text-center flex-shrink-0">
+                    <span class="text-slate-500 text-[10px] uppercase font-bold block">Escala de Logro CNEB</span>
+                    <span class="font-black text-slate-800 dark:text-amber-400 text-xs">AD (18-20) | A (14-17) | B (11-13) | C (0-10)</span>
+                </div>
+            </div>
+
+            <!-- CONTENEDOR DE LAS 10 PREGUNTAS -->
+            <form id="finalExamForm" class="space-y-6">
+                
+                <!-- Pregunta 1 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">1. ¿Qué magnitud física mide la rapidez con la que se realiza un trabajo mecánico (\(P = W / t\))?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q1" value="A" class="accent-peruRed"> A) Fuerza elástica
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q1" value="B" class="accent-peruRed"> B) Potencia Mecánica
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q1" value="C" class="accent-peruRed"> C) Aceleración sísmica
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q1" value="D" class="accent-peruRed"> D) Impulso inercial
+                        </label>
+                    </div>
+                    <div id="fb-q1" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">2. Cuando el suelo se desplaza abruptamente durante un sismo y el edificio tiende a quedarse en su posición inicial, ¿qué principio de la física se evidencia?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q2" value="A" class="accent-peruRed"> A) Ley de la Inercia (1° Ley de Newton)
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q2" value="B" class="accent-peruRed"> B) Tercera Ley de Kepler
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q2" value="C" class="accent-peruRed"> C) Principio de Arquímedes
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q2" value="D" class="accent-peruRed"> D) Ley de Gravitación de Cavendish
+                        </label>
+                    </div>
+                    <div id="fb-q2" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">3. Una roca de 200 kg se encuentra en la cumbre de un cerro en S.J.L. a 30 metros de altura. ¿Qué tipo de energía almacena principalmente antes de caer?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q3" value="A" class="accent-peruRed"> A) Energía Cinética Nuclear
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q3" value="B" class="accent-peruRed"> B) Energía Potencial Gravitatoria
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q3" value="C" class="accent-peruRed"> C) Energía Térmica Volcánica
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q3" value="D" class="accent-peruRed"> D) Energía Electrostática
+                        </label>
+                    </div>
+                    <div id="fb-q3" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">4. ¿Cuál es el principal factor meteorológico que intensifica los huaycos y precipitaciones en la costa central del Perú durante el fenómeno de El Niño?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q4" value="A" class="accent-peruRed"> A) Calentamiento anómalo de la temperatura superficial del Océano Pacífico ecuatorial
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q4" value="B" class="accent-peruRed"> B) Enfriamiento extremo del Lago Titicaca
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q4" value="C" class="accent-peruRed"> C) Vientos polares procedentes de la Antártida
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q4" value="D" class="accent-peruRed"> D) La disminución de la radiación solar estacional
+                        </label>
+                    </div>
+                    <div id="fb-q4" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Pregunta 5 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">5. ¿Por qué la triangulación en la estructura (arriostramiento) mejora la estabilidad de un edificio ante un sismo?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q5" value="A" class="accent-peruRed"> A) Porque el triángulo es una geometría indeformable que distribuye eficientemente las fuerzas de corte
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q5" value="B" class="accent-peruRed"> B) Porque reduce el peso a cero en la parte superior
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q5" value="C" class="accent-peruRed"> C) Porque elimina la fuerza de gravedad sobre el cimiento
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q5" value="D" class="accent-peruRed"> D) Porque absorbe la lluvia torrencial
+                        </label>
+                    </div>
+                    <div id="fb-q5" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Pregunta 6 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">6. Un motor eléctrico realiza un trabajo mecánico de 10,000 Joules en 5 segundos. ¿Cuál es su Potencia desarrollada?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q6" value="A" class="accent-peruRed"> A) 50,000 Watts
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q6" value="B" class="accent-peruRed"> B) 2,000 Watts
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q6" value="C" class="accent-peruRed"> C) 500 Joules
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q6" value="D" class="accent-peruRed"> D) 20,000 Pascual
+                        </label>
+                    </div>
+                    <div id="fb-q6" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Pregunta 7 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">7. ¿Cuál es la finalidad primordial de participar activamente en los simulacros de evacuación en la I.E. N° 0148?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q7" value="A" class="accent-peruRed"> A) Memorizar fórmulas matemáticas sin aplicación práctica
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q7" value="B" class="accent-peruRed"> B) Reconocer zonas seguras, reducir tiempos de respuesta y actuar con calma para salvar vidas
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q7" value="C" class="accent-peruRed"> C) Probar la resistencia de las ventanas del aula
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q7" value="D" class="accent-peruRed"> D) Suspender las clases presenciales del nivel secundaria
+                        </label>
+                    </div>
+                    <div id="fb-q7" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Pregunta 8 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">8. ¿Qué punto subterráneo representa la ruptura real de las fallas o placas tectónicas donde se genera la vibración original?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q8" value="A" class="accent-peruRed"> A) Hipocentro o Foco Sísmico
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q8" value="B" class="accent-peruRed"> B) Océano Pacífico
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q8" value="C" class="accent-peruRed"> C) Cúpula Atmosférica
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q8" value="D" class="accent-peruRed"> D) Zona de Convergencia Intertropical
+                        </label>
+                    </div>
+                    <div id="fb-q8" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Pregunta 9 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">9. Si un objeto incrementa su velocidad al doble, ¿qué sucede con su Energía Cinética (\(E_c = \frac{1}{2} m v^2\))?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q9" value="A" class="accent-peruRed"> A) Permanecerá constante sin cambios
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q9" value="B" class="accent-peruRed"> B) Se cuadruplica (4 veces mayor), pues la velocidad está elevada al cuadrado
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q9" value="C" class="accent-peruRed"> C) Se reduce a la mitad
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q9" value="D" class="accent-peruRed"> D) Se convierte en masa gaseosa
+                        </label>
+                    </div>
+                    <div id="fb-q9" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Pregunta 10 -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100">10. ¿Cuál es el rol de los aislamientos elastoméricos en los cimientos de edificaciones sismorresistentes modernas?</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q10" value="A" class="accent-peruRed"> A) Evitar las filtraciones de agua de lluvia en los techos
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q10" value="B" class="accent-peruRed"> B) Desacoplar la estructura del suelo para amortiguar el impacto directo de las ondas sísmicas
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q10" value="C" class="accent-peruRed"> C) Aumentar la atracción gravitatoria del suelo
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 flex items-center gap-3 cursor-pointer">
+                            <input type="radio" name="q10" value="D" class="accent-peruRed"> D) Conducir electricidad para iluminación de emergencia
+                        </label>
+                    </div>
+                    <div id="fb-q10" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- BOTÓN CALCULAR EVALUACIÓN -->
+                <div class="text-center pt-4">
+                    <button type="button" onclick="evaluateFinalExam()" class="bg-gradient-to-r from-peruRed to-red-800 text-white font-black px-10 py-4 rounded-2xl shadow-xl hover:scale-105 transition flex items-center gap-3 mx-auto text-base">
+                        <i class="fa-solid fa-square-check text-xl"></i> Finalizar y Calcular Nota CNEB
+                    </button>
+                </div>
+            </form>
+
+            <!-- CARD CON RESULTADO DE EVALUACIÓN Y NOTA CNEB -->
+            <div id="finalScoreCard" class="hidden bg-gradient-to-br from-slate-900 to-slate-950 text-white p-6 sm:p-8 rounded-3xl border-4 border-incaGold shadow-2xl space-y-6">
+                <div class="text-center space-y-2">
+                    <span class="text-xs font-bold uppercase tracking-widest text-incaGold">Resultado Oficial del Aprendizaje (CNEB 2026)</span>
+                    <h3 class="text-2xl sm:text-3xl font-black text-white">I.E. N° 0148 "Maestro V.R.H.T."</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-1">
+                        <span class="text-slate-400 text-xs font-semibold block">Puntaje Obtenido</span>
+                        <span id="scorePoints" class="text-3xl font-black text-amber-400">0 / 20</span>
+                    </div>
+                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-1">
+                        <span class="text-slate-400 text-xs font-semibold block">Respuestas Correctas</span>
+                        <span id="correctCount" class="text-3xl font-black text-emerald-400">0 de 10</span>
+                    </div>
+                    <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-1">
+                        <span class="text-slate-400 text-xs font-semibold block">Nivel de Logro CNEB</span>
+                        <span id="cnebLevelBadge" class="text-3xl font-black text-peruRed">--</span>
+                    </div>
+                </div>
+
+                <!-- Mensaje Pedagógico del Nivel -->
+                <div id="cnebFeedbackBox" class="p-4 rounded-2xl bg-white/5 border border-white/10 text-sm leading-relaxed text-center font-medium text-slate-200">
+                    Cargando dictamen pedagógico...
+                </div>
+
+                <!-- Generador del Certificado con Nombre -->
+                <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <input type="text" id="studentNameFinalExam" placeholder="Ingresa tu Nombre y Apellidos" class="w-full sm:w-80 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold text-sm focus:outline-none">
+                    <button onclick="generateDiplomaFromExam()" class="w-full sm:w-auto bg-incaGold text-slate-900 font-black px-6 py-3 rounded-xl shadow-lg hover:bg-yellow-400 transition whitespace-nowrap text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-award"></i> Descargar Diploma con Nota
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+<!-- ... existing code ?>
+            <!-- Indicadores de logro -->
+            <div class="flex justify-around items-center bg-amber-50 p-4 rounded-2xl border border-incaGold/30">
+                <div>
+                    <span class="text-[10px] uppercase text-slate-500 block font-bold">Estrellas Acumuladas</span>
+                    <span id="certStars" class="text-xl font-extrabold text-incaGold">100 / 100</span>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase text-slate-500 block font-bold">Nivel de Logro CNEB</span>
+                    <span id="certCnebBadge" class="text-lg font-black text-peruRed">AD (Logro Destacado)</span>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase text-slate-500 block font-bold">Fecha de Emisión</span>
+                    <span id="certDate" class="text-xs font-bold text-slate-700">2026</span>
+                </div>
+            </div>
+
+            <!-- Firmas simuladas -->
+            <div class="flex justify-around pt-6">
+                <div class="text-center w-40">
+                    <div class="border-b border-slate-400 mb-1 font-serif italic text-xs text-slate-400">Prof. C&T / AIP</div>
+                    <span class="text-[10px] font-bold text-slate-700 block">Docente de Ciencia y Tecnología</span>
+                    <span class="text-[9px] text-slate-500">I.E. N° 0148 MVRHT</span>
+                </div>
+                <div class="text-center w-40">
+                    <div class="border-b border-slate-400 mb-1 font-serif italic text-xs text-slate-400">Dirección I.E. 0148</div>
+                    <span class="text-[10px] font-bold text-slate-700 block">Dirección Institucional</span>
+                    <span class="text-[9px] text-slate-500">S.J.L. - UGEL 05</span>
+                </div>
+            </div>
+
+            <!-- Botones de Acción Imprimir -->
+            <div class="no-print pt-4 flex justify-center gap-4">
+                <button onclick="window.print()" class="bg-peruRed text-white font-bold text-xs px-6 py-2.5 rounded-xl hover:bg-red-700 transition flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-print"></i> Imprimir o Guardar PDF
+                </button>
+                <button onclick="closeCertificate()" class="bg-slate-200 text-slate-800 font-bold text-xs px-6 py-2.5 rounded-xl hover:bg-slate-300 transition">
+                    Volver a la Lectura
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT INTEGRADO -->
+    <script>
+        /* ==================== BASE DE DATOS DEL GLOSARIO ==================== */
+        const glossaryDB = {
+            'el_nino': {
+                term: 'Fenómeno El Niño',
+                etymology: 'Del español (referencia al Niño Jesús por su aparición en fechas navideñas)',
+                def: 'Evento climático recurrente caracterizado por el calentamiento anómalo de las aguas del Océano Pacífico ecuatorial, provocando lluvias torrenciales e inundaciones en la costa peruana.',
+                example: 'Las intensas precipitaciones asociadas a El Niño incrementaron el riesgo de deslizamientos en las quebradas de San Juan de Lurigancho.'
+            },
+            'epicentro': {
+                term: 'Epicentro',
+                etymology: 'Del griego "epi" (sobre) y "kentron" (centro)',
+                def: 'Punto de la superficie terrestre situado en la vertical del hipocentro o foco donde se origina un movimiento sísmico.',
+                example: 'El epicentro del sismo se localizó en la costa central del Perú, activando los sistemas de evacuación escolar.'
+            },
+            'inercia': {
+                term: 'Inercia',
+                etymology: 'Del latín "inertia" (inactividad, incapacidad)',
+                def: 'Propiedad de los cuerpos de mantener su estado de reposo relativo o movimiento rectilíneo uniforme si no actúa sobre ellos una fuerza externa.',
+                example: 'Debido a la inercia, la parte superior de un edificio no reforzado se desplaza en dirección opuesta al sacudón inicial del suelo.'
+            },
+            'pachamama': {
+                term: 'Pachamama',
+                etymology: 'Del quechua "Pacha" (mundo, tiempo, tierra) y "Mama" (madre)',
+                def: 'Divinidad ancestral andina que representa a la Madre Tierra, símbolo de respeto ecológico, fértil y equilibrio con la naturaleza.',
+                example: 'Los saberes ancestrales nos enseñan a habitar la Pachamama respetando los márgenes naturales de los ríos.'
+            },
+            'apu': {
+                term: 'Apu',
+                etymology: 'Del quechua "Apu" (señor, tutelar, montaña sagrada)',
+                def: 'Espíritu protector representado por las montañas y cerros tutelares en la cosmovisión andina.',
+                example: 'En las laderas de los apus urbanos de San Juan de Lurigancho se requiere reforestación para contener desprendimientos.'
+            },
+            'energia_potencial': {
+                term: 'Energía Potencial',
+                etymology: 'Del latín "potentia" (fuerza, capacidad)',
+                def: 'Energía mecánica asociada a la posición de un cuerpo dentro de un campo de fuerza gravitatorio (Ep = m · g · h).',
+                example: 'Una roca situada en la cumbre de un cerro almacena una gran energía potencial gravitatoria.'
+            },
+            'energia_cinetica': {
+                term: 'Energía Cinética',
+                etymology: 'Del griego "kinesica" (movimiento)',
+                def: 'Energía que posee un cuerpo debido a su movimiento espacial (Ec = 1/2 m v²).',
+                example: 'Al deslizarse el masa de tierra en un huayco, la energía potencial se transforma íntegramente en energía cinética.'
+            },
+            'trabajo_mecanico': {
+                term: 'Trabajo Mecánico',
+                etymology: 'Del latín "tripaliare" y del griego "mechanikos"',
+                def: 'Magnitud física escalar que mide la transferencia de energía provocada por una fuerza al desplazar un cuerpo (W = F · d).',
+                example: 'Las fuerzas sísmicas realizan un trabajo mecánico al deformar las vigas de una estructura.'
+            },
+            'sismorresistente': {
+                term: 'Sismorresistente',
+                etymology: 'Del griego "seismos" (sacudida) y el latín "resistere" (oponerse)',
+                def: 'Diseño de ingeniería que permite a una estructura resistir los esfuerzos horizontales y verticales producidos por ondas telúricas sin colapsar.',
+                example: 'La maqueta antisísmica diseñada en el AIP incluye aisladores elastoméricos para ser sismorresistente.'
+            }
+        };
+
+        /* ==================== ESTADO GLOBAL DE LA APLICACIÓN ==================== */
+        let currentChapter = 1;
+        let userStars = 0;
+        let answeredQuestions = new Set();
+        let currentHighlighterColor = 'yellow';
+        let currentActiveTermKey = null;
+        let fontSizeLevel = 16;
+        let structuralBracingActive = false;
+        let latestCnebLevel = "En Proceso (B)"; // Nivel por defecto
+
+        /* Clave de respuestas del Examen Final */
+        const examAnswerKey = {
+            q1: { correct: 'B', exp: 'La Potencia Mecánica P = W / t mide la rapidez del trabajo entregado o realizado en el tiempo (Watts).' },
+            q2: { correct: 'A', exp: 'La 1° Ley de Newton o Inercia establece que un cuerpo tiende a conservar su estado de reposo a menos que actúe una fuerza sobre él.' },
+            q3: { correct: 'B', exp: 'Debido a la altura h en el campo gravitatorio, la masa almacena Energía Potencial Gravitatoria Ep = m · g · h.' },
+            q4: { correct: 'A', exp: 'El calentamiento del Océano Pacífico produce mayor evaporación y nubes que causan lluvias severas en la costa.' },
+            q5: { correct: 'A', exp: 'La triangulación forma estructuras rígidas indeformables que absorben esfuerzos de corte sísmicos.' },
+            q6: { correct: 'B', exp: 'P = W / t = 10,000 J / 5 s = 2,000 Watts.' },
+            q7: { correct: 'B', exp: 'Los simulacros sirven para practicar rutas, automatizar comportamientos seguros y reducir la vulnerabilidad.' },
+            q8: { correct: 'A', exp: 'El Hipocentro es el punto interno en la falla donde se libera la energía sísmica inicial.' },
+            q9: { correct: 'B', exp: 'Como la velocidad está al cuadrado en Ec = (1/2)m v², duplicar la velocidad cuadruplica la energía cinética (2² = 4).' },
+            q10: { correct: 'B', exp: 'Los aisladores de base desacoplan mecánicamente la edificación del suelo para atenuar la sacudida.' }
+        };
+
+        /* ==================== CONTROL DE NAVEGACIÓN Y PESTAÑAS ==================== */
+        function switchChapter(capNum) {
+            currentChapter = capNum;
+            document.getElementById('chapter1').classList.add('hidden');
+            document.getElementById('chapter2').classList.add('hidden');
+            document.getElementById('chapter3').classList.add('hidden');
+            document.getElementById('chapter4').classList.add('hidden');
+
+            document.getElementById(`chapter${capNum}`).classList.remove('hidden');
+
+            // Actualizar pestañas UI
+            for (let i = 1; i <= 4; i++) {
+                const tab = document.getElementById(`tab-cap${i}`);
+                if (i === capNum) {
+                    tab.className = "px-5 py-3 font-semibold text-sm border-b-4 border-incaGold bg-white/10 flex items-center gap-2 whitespace-nowrap transition";
+                } else {
+                    tab.className = "px-5 py-3 font-semibold text-sm border-b-4 border-transparent hover:bg-white/5 flex items-center gap-2 whitespace-nowrap transition";
+                }
+            }
+
+            if (capNum === 1) initSeismicCanvas();
+            if (capNum === 2) runPhysicsLab();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ==================== GLOSARIO CON SÍNTESIS DE VOZ (TTS) ==================== */
+        /* ==================== EVALUACIÓN AUTOMÁTICA Y ESCALA CNEB ==================== */
+        function evaluateFinalExam() {
+            let correctNum = 0;
+            const form = document.getElementById('finalExamForm');
+
+            for (let i = 1; i <= 10; i++) {
+                const qKey = `q${i}`;
+                const selectedOption = form.elements[qKey]?.value;
+                const fbBox = document.getElementById(`fb-${qKey}`);
+                fbBox.classList.remove('hidden', 'bg-red-100', 'bg-green-100', 'text-red-800', 'text-green-800', 'dark:bg-red-950', 'dark:bg-green-950', 'dark:text-red-300', 'dark:text-green-300');
+
+                if (selectedOption === examAnswerKey[qKey].correct) {
+                    correctNum++;
+                    fbBox.classList.add('bg-green-100', 'text-green-800', 'dark:bg-green-950', 'dark:text-green-300');
+                    fbBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> <strong>Correcto:</strong> ${examAnswerKey[qKey].exp}`;
+                } else {
+                    fbBox.classList.add('bg-red-100', 'text-red-800', 'dark:bg-red-950', 'dark:text-red-300');
+                    fbBox.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> <strong>Marcaste ${selectedOption || 'ninguna'}:</strong> La respuesta correcta es la <strong>${examAnswerKey[qKey].correct}</strong>. ${examAnswerKey[qKey].exp}`;
+                }
+            }
+
+            // Nota sobre 20
+            const score20 = correctNum * 2;
+            document.getElementById('scorePoints').innerText = `${score20} / 20`;
+            document.getElementById('correctCount').innerText = `${correctNum} de 10`;
+
+            // Mapeo a Escala CNEB Perú
+            let cnebBadgeText = "";
+            let cnebColorClass = "";
+            let feedbackText = "";
+
+            if (score20 >= 18) {
+                cnebBadgeText = "AD - Logro Destacado";
+                cnebColorClass = "text-amber-400 font-extrabold";
+                feedbackText = "¡Extraordinario desempeño! Has demostrado un aprendizaje sobresaliente en la indagación científica y el diseño sismorresistente para la I.E. N° 0148.";
+                playSound('win');
+                addStars(50);
+            } else if (score20 >= 14) {
+                cnebBadgeText = "A - Logro Esperado";
+                cnebColorClass = "text-emerald-400 font-extrabold";
+                feedbackText = "¡Excelente trabajo! Has alcanzado los aprendizajes esperados en Ciencia y Tecnología de acuerdo al Currículo Nacional.";
+                playSound('correct');
+                addStars(30);
+            } else if (score20 >= 11) {
+                cnebBadgeText = "B - En Proceso";
+                cnebColorClass = "text-yellow-400 font-extrabold";
+                feedbackText = "Te encuentras cerca del logro esperado. Te recomendamos revisar el laboratorio interactivo de Potencia y Energía para afianzar conceptos.";
+                playSound('error');
+                addStars(15);
+            } else {
+                cnebBadgeText = "C - En Inicio";
+                cnebColorClass = "text-red-400 font-extrabold";
+                feedbackText = "Se requiere reforzar la lectura activa y repetir los experimentos de maquetas antisísmicas antes de reintentar la evaluación.";
+                playSound('error');
+            }
+
+            latestCnebLevel = cnebBadgeText;
+            const badgeEl = document.getElementById('cnebLevelBadge');
+            badgeEl.innerText = cnebBadgeText;
+            badgeEl.className = `text-2xl font-black ${cnebColorClass}`;
+
+            document.getElementById('cnebFeedbackBox').innerText = feedbackText;
+            document.getElementById('finalScoreCard').classList.remove('hidden');
+
+            document.getElementById('finalScoreCard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateDiplomaFromExam() {
+            const nameInput = document.getElementById('studentNameFinalExam').value.trim();
+            if (!nameInput) {
+                alert("Por favor, ingresa tu Nombre y Apellido para imprimir el diploma con tu calificación CNEB.");
+                return;
+            }
+            document.getElementById('studentNameInput').value = nameInput;
+            document.getElementById('certCnebBadge').innerText = latestCnebLevel;
+            generateDiploma();
+        }
+
+        function closeGlossary() {
+            document.getElementById('glossaryModal').classList.add('hidden');
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        function speakCurrentTerm() {
+            if (!currentActiveTermKey || !('speechSynthesis' in window)) {
+                alert('La síntesis de voz no está soportada en este navegador.');
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const data = glossaryDB[currentActiveTermKey];
+            const textToSpeak = `${data.term}. ${data.def}`;
+            const utterance = new SpeechSynthesisUtterance(textToSpeak);
+            utterance.lang = 'es-PE';
+            utterance.rate = 0.95;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        /* ==================== HERRAMIENTA PLUMÓN RESALTADOR ==================== */
+        function setHighlighter(color) {
+            currentHighlighterColor = color;
+            document.getElementById('btnHL-yellow').style.borderColor = color === 'yellow' ? '#000' : 'transparent';
+            document.getElementById('btnHL-green').style.borderColor = color === 'green' ? '#000' : 'transparent';
+            document.getElementById('btnHL-blue').style.borderColor = color === 'blue' ? '#000' : 'transparent';
+        }
+
+        document.addEventListener('mouseup', function () {
+            const selection = window.getSelection();
+            if (!selection.rangeCount || selection.isCollapsed) return;
+
+            const text = selection.toString().trim();
+            if (text.length < 3) return;
+
+            const range = selection.getRangeAt(0);
+            const container = range.commonAncestorContainer;
+
+            // Verificar que la selección esté dentro de la zona interactiva de lectura
+            let isInsideSelectable = false;
+            let parent = container.parentElement;
+            while (parent) {
+                if (parent.classList && parent.classList.contains('selectable-area')) {
+                    isInsideSelectable = true;
+                    break;
+                }
+                parent = parent.parentElement;
+            }
+
+            if (isInsideSelectable) {
+                const span = document.createElement('span');
+                span.className = `hl-${currentHighlighterColor}`;
+                try {
+                    range.surroundContents(span);
+                } catch (e) {
+                    console.warn("No se puede resaltar a través de etiquetas complejas.");
+                }
+            }
+        });
+
+        function clearSelectionHighlight() {
+            const highlights = document.querySelectorAll('.hl-yellow, .hl-green, .hl-blue');
+            highlights.forEach(el => {
+                const parent = el.parentNode;
+                while (el.firstChild) parent.insertBefore(el.firstChild, el);
+                parent.removeChild(el);
+            });
+        }
+
+        /* ==================== MODO LECTURA Y FUENTES ==================== */
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-moon";
+            } else {
+                html.classList.add('dark');
+                themeIcon.className = "fa-solid fa-sun";
+            }
+        }
+
+        function changeFontSize(delta) {
+            fontSizeLevel = Math.max(13, Math.min(22, fontSizeLevel + delta));
+            document.getElementById('contentContainer').style.fontSize = `${fontSizeLevel}px`;
+        }
+
+        /* ==================== GAMIFICACIÓN Y RESPUESTAS ==================== */
+        function addStars(amount) {
+            userStars += amount;
+            document.getElementById('starCounter').innerText = userStars;
+            const progress = Math.min(100, Math.round((userStars / 100) * 100));
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('progressPercent').innerText = `${progress}%`;
+        }
+
+        function checkAnswer(btn, isCorrect, qId) {
+            if (answeredQuestions.has(qId)) return;
+            answeredQuestions.add(qId);
+
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('.opt-btn');
+            buttons.forEach(b => b.disabled = true);
+
+            if (isCorrect) {
+                btn.classList.add('bg-green-500', 'text-white', 'font-bold');
+                playSound('correct');
+                addStars(20);
+            } else {
+                btn.classList.add('bg-red-500', 'text-white', 'font-bold');
+                playSound('error');
+            }
+        }
+
+        /* Secuencia de ordenamiento Cap 1 */
+        function moveSortItem(item) {
+            const parent = item.parentElement;
+            parent.appendChild(item); // Mueve al final al hacer clic
+        }
+
+        function verifyOrder() {
+            if (answeredQuestions.has('c1_sort')) return;
+            const items = document.querySelectorAll('#sortableList .sort-item');
+            const currentIds = Array.from(items).map(el => el.getAttribute('data-id'));
+            
+            if (currentIds.join('') === '123') {
+                playSound('correct');
+                addStars(20);
+                alert("¡Excelente! Has ordenado correctamente la secuencia de propagación sísmica.");
+                answeredQuestions.add('c1_sort');
+            } else {
+                playSound('error');
+                alert("El orden no es el correcto. Recuerda: 1. Ruptura en hipocentro -> 2. Propagación de ondas -> 3. Sacudida en superficie.");
+            }
+        }
+
+        /* ==================== SIMULADOR DE SISMOS (CANVAS) ==================== */
+        let seismicCanvasCtx = null;
+        let seismicVal = 5.5;
+
+        function initSeismicCanvas() {
+            const canvas = document.getElementById('seismicCanvas');
+            if (!canvas) return;
+            seismicCanvasCtx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            drawSeismicWave();
+        }
+
+        function updateSeismicSimulation(val) {
+            seismicVal = parseFloat(val);
+            document.getElementById('richterVal').innerText = seismicVal.toFixed(1);
+            drawSeismicWave();
+        }
+
+        function drawSeismicWave() {
+            if (!seismicCanvasCtx) return;
+            const ctx = seismicCanvasCtx;
+            const w = ctx.canvas.width;
+            const h = ctx.canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Capa Terrestre
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, w, h);
+
+            // Dibujar Ondas Sísmicas
+            ctx.beginPath();
+            ctx.strokeStyle = '#C8102E';
+            ctx.lineWidth = Math.max(1.5, seismicVal - 3);
+
+            const cy = h / 2;
+            const freq = 0.05;
+            const amp = (seismicVal - 2) * 6;
+
+            for (let x = 0; x < w; x++) {
+                const y = cy + Math.sin(x * freq) * amp * Math.cos(x * 0.02);
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            // Dibujar estructura esquemática
+            ctx.fillStyle = '#D4AF37';
+            ctx.fillRect(w / 2 - 15, cy - amp - 30, 30, 30);
+        }
+
+        /* ==================== LABORATORIO FÍSICO CAP 2 ==================== */
+        function runPhysicsLab() {
+            const m = parseFloat(document.getElementById('massInput').value);
+            const h = parseFloat(document.getElementById('heightInput').value);
+            const t = parseFloat(document.getElementById('timeInput').value);
+
+            document.getElementById('massVal').innerText = `${m} kg`;
+            document.getElementById('heightVal').innerText = `${h} m`;
+            document.getElementById('timeVal').innerText = `${t.toFixed(1)} s`;
+
+            const g = 9.8;
+            const Ep = m * g * h; // Joules
+            const W = Ep; // Trabajo para levantar o liberado
+            const P = W / t; // Watts
+
+            document.getElementById('resEp').innerText = `${Ep.toLocaleString('es-PE', {maximumFractionDigits:0})} J`;
+            document.getElementById('resW').innerText = `${W.toLocaleString('es-PE', {maximumFractionDigits:0})} J`;
+            document.getElementById('resP').innerText = `${P.toLocaleString('es-PE', {maximumFractionDigits:0})} W`;
+        }
+
+        /* ==================== MAQUETA ANTISÍSMICA CAP 3 ==================== */
+        function toggleStructuralBracing() {
+            structuralBracingActive = !structuralBracingActive;
+            const btn = document.getElementById('toggleBraceBtn');
+            const bracing = document.getElementById('buildingBracing');
+            const status = document.getElementById('buildingStatus');
+
+            if (structuralBracingActive) {
+                btn.innerText = "Quitar Disipadores ESTRUCTURALES";
+                btn.className = "w-full bg-selvaGreen text-white font-bold py-2 rounded-lg hover:bg-emerald-700 transition";
+                bracing.className = "w-full h-4 bg-incaGold rounded flex justify-around items-center border border-yellow-300";
+                status.innerText = "Edificio Reforzado: Disipadores triangulares amortiguan energía sísmica.";
+                status.className = "text-center font-bold text-emerald-400 text-xs";
+            } else {
+                btn.innerText = "Añadir Disipadores de Energía (Triangulación)";
+                btn.className = "w-full bg-incaGold text-slate-900 font-bold py-2 rounded-lg hover:bg-yellow-500 transition";
+                bracing.className = "w-full h-4 bg-slate-600 rounded flex justify-around items-center border border-slate-500";
+                status.innerText = "Edificio Sin Refuerzos: Vulnerable a resonancia.";
+                status.className = "text-center font-bold text-slate-300 text-xs";
+            }
+        }
+
+        function shakeBuilding() {
+            const b = document.getElementById('buildingStructure');
+            const status = document.getElementById('buildingStatus');
+
+            if (!structuralBracingActive) {
+                b.style.transform = "skewX(12deg) translateX(10px)";
+                playSound('error');
+                setTimeout(() => { b.style.transform = "skewX(-12deg) translateX(-10px)"; }, 150);
+                setTimeout(() => { b.style.transform = "none"; }, 300);
+                status.innerText = "¡ALERTA DE COLAPSO! La estructura sin arriostramientos se deformó críticamente.";
+                status.className = "text-center font-bold text-red-500 text-xs animate-pulse";
+            } else {
+                b.style.transform = "translateX(3px)";
+                playSound('correct');
+                setTimeout(() => { b.style.transform = "translateX(-3px)"; }, 150);
+                setTimeout(() => { b.style.transform = "none"; }, 300);
+                status.innerText = "¡ESTABILIDAD EXITOSA! La maqueta disipó las vibraciones horizontalmente.";
+                status.className = "text-center font-bold text-emerald-400 text-xs";
+            }
+        }
+
+        /* ==================== GENERACIÓN DE DIPLOMA INSTITUCIONAL ==================== */
+        function generateDiploma() {
+            const name = document.getElementById('studentNameInput').value.trim();
+            if (!name) {
+                alert("Por favor, escribe tu nombre completo para emitir tu certificado oficial.");
+                return;
+            }
+
+            document.getElementById('certStudentName').innerText = name;
+            document.getElementById('certStars').innerText = `${userStars} Estrellas`;
+            document.getElementById('certDate').innerText = `San Juan de Lurigancho, 2026`;
+
+            playSound('win');
+            document.getElementById('certificateModal').classList.remove('hidden');
+        }
+
+        function closeCertificate() {
+            document.getElementById('certificateModal').classList.add('hidden');
+        }
+
+        function showInstitutionalInfo() {
+            alert("I.E. N° 0148 Maestro Víctor Raúl Haya de la Torre\nUbicación: San Juan de Lurigancho (S.J.L.)\nAula de Innovación Pedagógica (AIP 2026)\nCompromiso con la cultura de prevención y la excelencia científica.");
+        }
+
+        /* Inicialización al cargar la ventana */
+        window.onload = function () {
+            initSeismicCanvas();
+            runPhysicsLab();
+            setHighlighter('yellow');
+        };
+
+        window.onresize = function () {
+            if (currentChapter === 1) initSeismicCanvas();
+        };
+    </script>
+</body>
+</html>
